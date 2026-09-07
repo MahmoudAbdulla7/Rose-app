@@ -19,12 +19,16 @@ import { useNotifications } from '../../hooks/use-notifications';
 import { useUnreadCount } from '../../hooks/use-unread-count';
 import NotificationItemSkeleton from '../../skeletons/notification-item.skeleton';
 
-export default function NotificationsDropdown() {
+type NotificationsDropdownProps = {
+  showLabel?: boolean;
+};
+
+export default function NotificationsDropdown({ showLabel = false }: NotificationsDropdownProps) {
   // Translation
   const t = useTranslations('header.notifications');
 
   // Custom hooks
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { data, fetchNextPage, hasNextPage, refetch, isFetchingNextPage, error, isLoading } =
     useNotifications({ enabled: isAuthenticated });
   const { data: unreadCount = 0, refetch: refetchUnreadCount } = useUnreadCount();
@@ -44,14 +48,6 @@ export default function NotificationsDropdown() {
     }
   };
 
-  if (!isAuthenticated || !user) {
-    return (
-      <div className="text-ds-text-default hidden p-2 lg:inline-flex">
-        <Bell className="size-5" />
-      </div>
-    );
-  }
-
   return (
     <DropdownMenu
       onOpenChange={(open) => {
@@ -61,16 +57,36 @@ export default function NotificationsDropdown() {
         }
       }}
     >
-      {/* Trigger */}
       <DropdownMenuTrigger
         render={
-          <button className="group text-ds-text-default relative hidden cursor-pointer items-center p-2 lg:inline-flex" />
+          <button
+            className={cn(
+              'group text-ds-text-default relative cursor-pointer items-center',
+              showLabel
+                ? 'inline-flex w-full gap-3 rounded-lg px-3 py-2.5'
+                : 'hidden p-2 lg:inline-flex',
+            )}
+          />
         }
       >
-        <Bell className="size-5" />
+        <span className={cn('shrink-0', showLabel && 'relative')}>
+          <Bell className={cn(showLabel ? 'size-4' : 'size-5')} />
 
-        {/* Count */}
-        {!error && unreadCount > 0 && (
+          {/* Mobile count */}
+          {!error && unreadCount > 0 && showLabel && (
+            <span className="bg-ds-primary text-ds-text-inverse absolute -inset-e-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] leading-none font-medium tabular-nums">
+              {unreadCount > 99 ? '99+' : unreadCount}
+            </span>
+          )}
+        </span>
+
+        {/* Mobile label */}
+        {showLabel && (
+          <span className="text-ds-text-default text-sm font-medium">{t('label')}</span>
+        )}
+
+        {/* Desktop count */}
+        {!showLabel && !error && unreadCount > 0 && (
           <span
             className="bg-ds-primary text-ds-text-inverse absolute -inset-e-0.5 -top-0.5 flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] leading-none font-medium tabular-nums"
             aria-hidden="true"
@@ -80,7 +96,6 @@ export default function NotificationsDropdown() {
         )}
       </DropdownMenuTrigger>
 
-      {/* Dropdown */}
       <DropdownMenuContent className="w-96" align="start">
         {/* Header */}
         <div className="bg-ds-primary-saturated text-ds-text-inverse flex justify-between p-4 text-xl font-bold">
@@ -98,7 +113,6 @@ export default function NotificationsDropdown() {
           </div>
         ) : (
           <>
-            {/* Toolbar */}
             <NotificationsToolbar
               hasNotifications={hasNotifications}
               unreadCount={unreadCount}
