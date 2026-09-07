@@ -15,6 +15,7 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
 } from '@/shared/ui/dropdown-menu';
+import { notificationKeys } from '../../hooks/notification.keys';
 
 interface NotificationItemProps {
   notification: Notification;
@@ -32,7 +33,7 @@ export default function NotificationItem({ notification }: NotificationItemProps
     mutationFn: markNotificationReadAction,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['notifications'],
+        queryKey: notificationKeys.all,
       });
     },
   });
@@ -41,7 +42,7 @@ export default function NotificationItem({ notification }: NotificationItemProps
     mutationFn: deleteNotificationAction,
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: ['notifications'],
+        queryKey: notificationKeys.all,
       });
     },
   });

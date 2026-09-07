@@ -6,6 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { deleteAllNotificationsAction } from '@/features/layout/lib/actions/delete-notification.action';
 import { markAllNotificationsReadAction } from '@/features/layout/lib/actions/mark-as-read.action';
+import { notificationKeys } from '../../hooks/notification.keys';
 
 interface NotificationsToolbarProps {
   hasNotifications: boolean;
@@ -30,7 +31,7 @@ export default function NotificationsToolbar({
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['notifications'],
+        queryKey: notificationKeys.all,
       });
     },
   });
@@ -40,7 +41,7 @@ export default function NotificationsToolbar({
 
     onSuccess: async () => {
       await queryClient.invalidateQueries({
-        queryKey: ['notifications'],
+        queryKey: notificationKeys.all,
       });
     },
   });

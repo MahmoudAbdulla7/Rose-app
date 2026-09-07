@@ -1,21 +1,17 @@
 import 'server-only';
 
-import { API_HEADERS } from '@/shared/lib/apis/headers.options';
 import { buildApiEndpoint } from '@/shared/lib/utils/api-endpoint-builder.utils';
-import { getNextAuthToken } from '@/shared/lib/utils/auth.utils';
-import type { GetNotificationsParams, NotificationPayload } from '../types/notification';
+import { getAuthHeaders } from '@/shared/lib/utils/auth-headers';
+import type {
+  GetNotificationsParams,
+  NotificationPayload,
+  UnreadCountPayload,
+} from '../types/notification';
 
 export async function getNotifications({
   page = 1,
-  limit = 10,
+  limit = 20,
 }: GetNotificationsParams): Promise<NotificationPayload> {
-  const jwt = await getNextAuthToken();
-  const token = jwt?.accessToken;
-
-  if (!token) {
-    throw new Error('Authentication required');
-  }
-
   const endpoint = buildApiEndpoint('notifications', {
     page: String(page),
     limit: String(limit),
@@ -23,10 +19,7 @@ export async function getNotifications({
 
   const response = await fetch(endpoint, {
     method: 'GET',
-    headers: {
-      ...API_HEADERS.JSON,
-      ...API_HEADERS.AUTHORIZATION(token),
-    },
+    headers: await getAuthHeaders(),
   });
 
   const data: IAPIResponse<NotificationPayload> = await response.json();
@@ -36,4 +29,21 @@ export async function getNotifications({
   }
 
   return data.payload;
+}
+
+export async function getUnreadCount() {
+  const endpoint = buildApiEndpoint('notifications/unread-count');
+
+  const response = await fetch(endpoint, {
+    method: 'GET',
+    headers: await getAuthHeaders(),
+  });
+
+  const data: IAPIResponse<UnreadCountPayload> = await response.json();
+
+  if (!data.status) {
+    throw new Error(data.message || 'Request failed');
+  }
+
+  return data.payload.unreadCount;
 }

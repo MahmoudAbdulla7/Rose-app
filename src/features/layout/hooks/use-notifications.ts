@@ -1,6 +1,7 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
+import { notificationKeys } from './notification.keys';
 
-const NOTIFICATIONS_LIMIT = 4;
+const NOTIFICATIONS_LIMIT = 20;
 
 interface UseNotificationsOptions {
   enabled?: boolean;
@@ -8,7 +9,7 @@ interface UseNotificationsOptions {
 
 export function useNotifications({ enabled = true }: UseNotificationsOptions = {}) {
   return useInfiniteQuery({
-    queryKey: ['notifications'],
+    queryKey: notificationKeys.all,
 
     initialPageParam: 1,
 
@@ -35,6 +36,6 @@ export function useNotifications({ enabled = true }: UseNotificationsOptions = {
     refetchOnWindowFocus: true,
     refetchOnReconnect: true,
     refetchOnMount: true,
-    refetchInterval: 60_000,
+    refetchInterval: 30_000,
   });
 }

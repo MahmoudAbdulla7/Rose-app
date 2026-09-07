@@ -15,7 +15,9 @@ type ResetPasswordBody = {
 };
 
 export async function forgotPasswordAction(body: ForgotPasswordBody): Promise<IAPIResponse<null>> {
-  const response = await fetch(buildApiEndpoint('auth/forgot-password'), {
+  const endpoint = buildApiEndpoint('auth/forgot-password');
+
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       ...API_HEADERS.JSON,
@@ -33,7 +35,9 @@ export async function forgotPasswordAction(body: ForgotPasswordBody): Promise<IA
 }
 
 export async function resetPasswordAction(body: ResetPasswordBody): Promise<IAPIResponse<null>> {
-  const response = await fetch(buildApiEndpoint('auth/reset-password'), {
+  const endpoint = buildApiEndpoint('auth/reset-password');
+
+  const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       ...API_HEADERS.JSON,
