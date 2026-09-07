@@ -69,7 +69,9 @@ export default function UserDropdown() {
           <DropdownMenuSeparator />
 
           {/* Account */}
-          <DropdownMenuItem render={<Link href="/profile" className={menuItemClasses} />}>
+          <DropdownMenuItem
+            render={<Link href="/account-settings/profile" className={menuItemClasses} />}
+          >
             <User size={16} strokeWidth={1.5} />
             <span>{t('account')}</span>
           </DropdownMenuItem>

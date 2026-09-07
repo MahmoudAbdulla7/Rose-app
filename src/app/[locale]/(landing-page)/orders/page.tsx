@@ -1,15 +1,7 @@
-import ComingSoonPage from '@/features/landing-page/components/coming-soon-page';
-import ComingSoonPageSkeleton from '@/features/landing-page/skeletons/coming-soon/coming-soon-page.skeleton';
-import { Suspense } from 'react';
+import OrdersPageContent from '@/features/orders/components/orders-content'
 
-type Props = {
-  params: Promise<{ locale: string }>;
-};
-
-export default function OrdersPage({ params }: Props) {
+export default function OrdersPage() {
   return (
-    <Suspense fallback={<ComingSoonPageSkeleton />}>
-      <ComingSoonPage params={params} titleKey="orders" />
-    </Suspense>
-  );
+    <OrdersPageContent />
+  )
 }

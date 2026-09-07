@@ -8,14 +8,29 @@ import type { IRegisterFields } from '../lib/types/register';
 
 interface IResendTimerProps {
   email: IRegisterFields['email'];
+  resendAction?: () => Promise<IAPIResponse<null>>;
+  namespace?: string;
+  successMessage?: string;
+  errorMessage?: string;
 }
 
-export function ResendTimer({ email }: IResendTimerProps) {
+export function ResendTimer({
+  email,
+  resendAction,
+  namespace = 'auth.register',
+  successMessage,
+  errorMessage,
+}: IResendTimerProps) {
   // Translation
-  const t = useTranslations('auth.register');
+  const t = useTranslations(namespace);
 
   // state
-  const { secondsLeft, isResending, resend } = useResendTimer({ email });
+  const { secondsLeft, isResending, resend } = useResendTimer({
+    email,
+    resendAction,
+    successMessage,
+    errorMessage,
+  });
 
   if (secondsLeft === null) return null;
 

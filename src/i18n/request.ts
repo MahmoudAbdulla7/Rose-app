@@ -20,6 +20,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     cart,
     address,
     checkout,
+    accountSettings,
   ] = await Promise.all([
     import(`./messages/${locale}/common.json`),
     import(`./messages/${locale}/auth.json`),
@@ -33,6 +34,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
     import(`./messages/${locale}/cart.json`),
     import(`./messages/${locale}/address.json`),
     import(`./messages/${locale}/checkout.json`),
+    import(`./messages/${locale}/account-settings.json`),
   ]);
 
   return {
@@ -52,6 +54,7 @@ export default getRequestConfig(async ({ requestLocale }) => {
       cart: cart.default,
       address: address.default,
       checkout: checkout.default,
+      accountSettings: accountSettings.default,
     },
   };
 });

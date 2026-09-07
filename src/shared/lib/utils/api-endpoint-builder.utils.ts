@@ -10,7 +10,14 @@ export function buildApiEndpoint(
   path: string,
   searchParams?: Record<string, string | string[] | undefined>,
 ): URL {
-  const base = process.env.NEXT_BASE_URL!.replace(/\/+$/, '');
+  const rawBase = process.env.NEXT_BASE_URL;
+  if (!rawBase) {
+    throw new Error(
+      'NEXT_BASE_URL is not configured. Copy .env.example to .env.local and restart the dev server.',
+    );
+  }
+
+  const base = rawBase.replace(/\/+$/, '');
   const endpoint = new URL(`${base}/${path.replace(/^\/+/, '')}`);
 
   if (searchParams) {

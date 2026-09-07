@@ -18,9 +18,10 @@ import { getPageItems } from '@/shared/lib/utils/pagination.utils';
 
 type PaginationProps = {
   totalPages: number;
+  onHoverPage?: (page: number) => void;
 };
 
-export default function Pagination({ totalPages }: PaginationProps) {
+export default function Pagination({ totalPages, onHoverPage }: PaginationProps) {
   const params = useSearchParams();
   const searchParams = searchParamsToObject(params);
   const currentPage = Number(params.get(PAGE_KEY)) || 1;
@@ -44,6 +45,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
             aria-disabled={isFirst}
             aria-label="Go to first page"
             className={isFirst ? 'pointer-events-none opacity-50' : ''}
+            onMouseEnter={() => onHoverPage?.(1)}
           >
             <ChevronsLeft className="rtl:rotate-180" />
           </PaginationLink>
@@ -54,6 +56,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
             href={hrefForPage(currentPage - 1)}
             aria-disabled={isFirst}
             className={isFirst ? 'pointer-events-none opacity-50' : ''}
+            onMouseEnter={() => onHoverPage?.(currentPage - 1)}
           />
         </PaginationItem>
 
@@ -68,7 +71,11 @@ export default function Pagination({ totalPages }: PaginationProps) {
 
           return (
             <PaginationItem key={item}>
-              <PaginationLink href={hrefForPage(item)} isActive={currentPage === item}>
+              <PaginationLink
+                href={hrefForPage(item)}
+                isActive={currentPage === item}
+                onMouseEnter={() => onHoverPage?.(item)}
+              >
                 {item}
               </PaginationLink>
             </PaginationItem>
@@ -80,6 +87,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
             href={hrefForPage(currentPage + 1)}
             aria-disabled={isLast}
             className={isLast ? 'pointer-events-none opacity-50' : ''}
+            onMouseEnter={() => onHoverPage?.(currentPage + 1)}
           />
         </PaginationItem>
 
@@ -89,6 +97,7 @@ export default function Pagination({ totalPages }: PaginationProps) {
             aria-disabled={isLast}
             aria-label="Go to last page"
             className={isLast ? 'pointer-events-none opacity-50' : ''}
+            onMouseEnter={() => onHoverPage?.(totalPages)}
           >
             <ChevronsRight className="rtl:rotate-180" />
           </PaginationLink>

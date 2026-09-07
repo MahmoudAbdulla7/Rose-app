@@ -11,9 +11,17 @@ import type { IRegisterFields } from '../types/register';
 
 interface IUseResendTimerParams {
   email: IRegisterFields['email'];
+  resendAction?: () => Promise<IAPIResponse<null>>;
+  successMessage?: string;
+  errorMessage?: string;
 }
 
-export function useResendTimer({ email }: IUseResendTimerParams) {
+export function useResendTimer({
+  email,
+  resendAction,
+  successMessage,
+  errorMessage,
+}: IUseResendTimerParams) {
   // Translation
   const t = useTranslations('auth.register');
 
@@ -48,17 +56,19 @@ export function useResendTimer({ email }: IUseResendTimerParams) {
   const resend = async () => {
     setIsResending(true);
     try {
-      const res = await sendEmailVerificationAction(email);
+      const res = resendAction
+        ? await resendAction()
+        : await sendEmailVerificationAction(email);
 
       if (!res.status) {
-        toast.error(res.message || t('messages.error'));
+        toast.error(res.message || errorMessage || t('messages.error'));
         return;
       }
 
       setSecondsLeft(RESEND_TIMEOUT);
-      toast.success(t('otp.resent'));
+      toast.success(successMessage || t('otp.resent'));
     } catch {
-      toast.error(t('messages.error'));
+      toast.error(errorMessage || t('messages.error'));
     } finally {
       setIsResending(false);
     }

@@ -12,6 +12,7 @@ export interface IUser {
   firstName: string;
   lastName: string;
   gender: Gender;
+  photo?: string | null;
   emailVerified: boolean;
   phoneVerified: boolean;
   role: Role;

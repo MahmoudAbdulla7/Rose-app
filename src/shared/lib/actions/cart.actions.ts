@@ -60,7 +60,7 @@ export async function updateCartQuantity(
   const endpoint = buildApiEndpoint('/cart', {});
 
   const response = await fetch(endpoint.toString(), {
-    method: 'PATCH', // or 'PUT' depending on your API
+    method: 'PATCH',
     body: JSON.stringify(data),
     headers: {
       ...API_HEADERS.JSON,

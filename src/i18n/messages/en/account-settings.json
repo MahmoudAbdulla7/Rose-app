@@ -1,0 +1,63 @@
+{
+  "title": "Account Settings",
+  "nav": {
+    "label": "Account settings",
+    "profile": "Profile",
+    "changePassword": "Change Password",
+    "logout": "Logout"
+  },
+  "changePassword": {
+    "metadataDescription": "Update the password for your Rose App account.",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "placeholder": "********",
+    "submit": "Change Password",
+    "success": "Your password has been changed."
+  },
+  "changeEmail": {
+    "title": "Change Email",
+    "description": "Enter your new email address. We will send a verification code to confirm the change.",
+    "newEmail": "New email",
+    "submit": "Send verification code",
+    "codeSent": "Verification code sent to your new email address.",
+    "success": "Your email has been updated.",
+    "change": "Change",
+    "otp": {
+      "title": "Verify email",
+      "description": "Enter the verification code sent to {email}.",
+      "verify": "Confirm",
+      "resend": "Resend code",
+      "resendIn": "Send a new code in {seconds}s",
+      "invalid": "Invalid verification code."
+    }
+  },
+  "profile": {
+    "metadataDescription": "Update your Rose App profile information.",
+    "uploadPhoto": "Upload Photo",
+    "uploadPhotoHint": "You can upload a .jpg, .png, or .gif photo with max size of 5MB.",
+    "uploadPhotoAria": "Upload profile photo",
+    "avatarTooLarge": "Photo must be 5MB or smaller.",
+    "avatarInvalidType": "Only .jpg, .png, or .gif photos are allowed.",
+    "avatarUploadFailed": "Failed to upload photo. Please try again.",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "phone": "Phone",
+    "gender": "Gender",
+    "genderOptions": {
+      "male": "Male",
+      "female": "Female"
+    },
+    "deleteAccount": "Delete My Account",
+    "deleteAccountModal": {
+      "title": "Are you sure you want to delete your account?",
+      "subtitle": "This action is permanent and cannot be undone.",
+      "cancel": "Nope, not doing it",
+      "confirm": "Yes, delete",
+      "success": "Your account has been deleted."
+    },
+    "submit": "Save Changes",
+    "success": "Your profile has been updated."
+  }
+}
