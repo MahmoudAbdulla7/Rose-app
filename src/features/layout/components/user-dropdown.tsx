@@ -13,11 +13,12 @@ import {
   DropdownMenuItem,
 } from '@/shared/ui/dropdown-menu';
 import { useAuth } from '@/shared/hooks';
+import { deletePushSubscription } from '../lib/utils/push-notifications.utils';
 
 export default function UserDropdown() {
   // Translation
+  const t = useTranslations('header.userMenu');
   const tGreeting = useTranslations('header.greeting');
-  const tUserMenu = useTranslations('header.userMenu');
 
   // Custom hooks
   const { user } = useAuth();
@@ -27,17 +28,21 @@ export default function UserDropdown() {
     'text-ds-text-plain flex w-full items-center gap-2 font-medium cursor-pointer';
 
   // Functions
-  const handleLogout = () => {
-    signOut({
-      callbackUrl: '/',
-    });
+  const handleLogout = async () => {
+    try {
+      await deletePushSubscription();
+    } finally {
+      await signOut({
+        callbackUrl: '/',
+      });
+    }
   };
 
   return (
     <div className="flex px-4">
       <div className="flex flex-col">
         {/* Greeting */}
-        <span className="text-xs text-zinc-500"> {tGreeting('hello')}</span>
+        <span className="text-ds-text-soft text-xs"> {tGreeting('hello')}</span>
         <span className="text-ds-primary-saturated font-medium">{user?.firstName}</span>
       </div>
 
@@ -68,19 +73,19 @@ export default function UserDropdown() {
             render={<Link href="/account-settings/profile" className={menuItemClasses} />}
           >
             <User size={16} strokeWidth={1.5} />
-            <span>{tUserMenu('account')}</span>
+            <span>{t('account')}</span>
           </DropdownMenuItem>
 
           {/* Addresses */}
           <DropdownMenuItem disabled render={<Link href="#" className={menuItemClasses} />}>
             <MapPinHouse size={16} strokeWidth={1.5} />
-            <span>{tUserMenu('addresses')}</span>
+            <span>{t('addresses')}</span>
           </DropdownMenuItem>
 
           {/* Orders */}
           <DropdownMenuItem render={<Link href="/orders" className={menuItemClasses} />}>
             <ScrollText size={16} strokeWidth={1.5} />
-            <span>{tUserMenu('orders')}</span>
+            <span>{t('orders')}</span>
           </DropdownMenuItem>
 
           <DropdownMenuSeparator />
@@ -90,7 +95,7 @@ export default function UserDropdown() {
             <>
               <DropdownMenuItem disabled render={<Link href="#" className={menuItemClasses} />}>
                 <Settings size={16} strokeWidth={1.5} />
-                <span>{tUserMenu('dashboard')}</span>
+                <span>{t('dashboard')}</span>
               </DropdownMenuItem>
 
               <DropdownMenuSeparator />
@@ -103,7 +108,7 @@ export default function UserDropdown() {
             render={<button onClick={handleLogout} className="flex w-full cursor-pointer gap-2" />}
           >
             <LogOut size={16} strokeWidth={1.5} />
-            <span className="text-ds-text-plain font-medium">{tUserMenu('logout')}</span>
+            <span className="text-ds-text-plain font-medium">{t('logout')}</span>
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
