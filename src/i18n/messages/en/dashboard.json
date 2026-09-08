@@ -13,5 +13,36 @@
     "label": "User menu",
     "account": "Account",
     "logout": "Log out"
+  },
+  "products": {
+    "addTitle": "Add a New Product",
+    "title": "Title",
+    "titlePlaceholder": "Enter product title",
+    "description": "Description",
+    "descriptionPlaceholder": "Enter product description",
+    "price": "Price",
+    "pricePlaceholder": "Example: 5000",
+    "discount": "Discount",
+    "discountPlaceholder": "Example: 5",
+    "priceAfterDiscount": "Price after discount",
+    "priceAfterDiscountPlaceholder": "Example: 5",
+    "quantity": "Quantity",
+    "quantityPlaceholder": "Example: 200",
+    "coverImage": "Product cover image",
+    "gallery": "Product gallery",
+    "category": "Category",
+    "occasion": "Occasion",
+    "selectPlaceholder": "Select an option",
+    "addProduct": "Add Product",
+    "mockCategories": {
+      "flowers": "Flowers",
+      "gifts": "Gifts",
+      "plants": "Plants"
+    },
+    "mockOccasions": {
+      "birthday": "Birthday",
+      "wedding": "Wedding",
+      "anniversary": "Anniversary"
+    }
   }
 }

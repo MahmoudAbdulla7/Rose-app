@@ -13,5 +13,36 @@
     "label": "قائمة المستخدم",
     "account": "الحساب",
     "logout": "تسجيل الخروج"
+  },
+  "products": {
+    "addTitle": "إضافة منتج جديد",
+    "title": "العنوان",
+    "titlePlaceholder": "أدخل عنوان المنتج",
+    "description": "الوصف",
+    "descriptionPlaceholder": "أدخل وصف المنتج",
+    "price": "السعر",
+    "pricePlaceholder": "مثال: 5000",
+    "discount": "الخصم",
+    "discountPlaceholder": "مثال: 5",
+    "priceAfterDiscount": "السعر بعد الخصم",
+    "priceAfterDiscountPlaceholder": "مثال: 5",
+    "quantity": "الكمية",
+    "quantityPlaceholder": "مثال: 200",
+    "coverImage": "صورة غلاف المنتج",
+    "gallery": "معرض صور المنتج",
+    "category": "التصنيف",
+    "occasion": "المناسبة",
+    "selectPlaceholder": "اختر خيارًا",
+    "addProduct": "إضافة منتج",
+    "mockCategories": {
+      "flowers": "زهور",
+      "gifts": "هدايا",
+      "plants": "نباتات"
+    },
+    "mockOccasions": {
+      "birthday": "عيد ميلاد",
+      "wedding": "زفاف",
+      "anniversary": "ذكرى سنوية"
+    }
   }
 }
