@@ -1,17 +1,17 @@
 'use client';
 
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { useMutation } from '@tanstack/react-query';
-import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type z from 'zod';
 
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { STEP } from '../../lib/constants/forgot-password.constant';
 import { createForgotPasswordSchema } from '../../lib/schemas/forgot-password.schema';
 import { forgotPasswordAction } from '../../lib/actions/forgot-password.action';
+import { STEP } from '../../lib/constants/forgot-password.constant';
 import type { Step } from '../../lib/constants/forgot-password.constant';
 import AuthHeader from '../auth-header';
 import AuthFooter from '../auth-footer';
@@ -29,7 +29,6 @@ export default function ForgotPasswordForm({ goToStep, setEmail }: ForgotPasswor
 
   // Schema
   const forgotPasswordSchema = createForgotPasswordSchema(tValidation);
-
   type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 
   // State
@@ -43,6 +42,11 @@ export default function ForgotPasswordForm({ goToStep, setEmail }: ForgotPasswor
       goToStep(STEP.SENT);
     },
     onError: (error) => {
+      if (error instanceof Error && error.cause === 500) {
+        setServerError(tCommon('error.networkError'));
+        return;
+      }
+
       setServerError(error instanceof Error ? error.message : tCommon('error.networkError'));
     },
   });
@@ -71,14 +75,12 @@ export default function ForgotPasswordForm({ goToStep, setEmail }: ForgotPasswor
 
   return (
     <>
-      {/* Header */}
       <AuthHeader
         variant="secondary"
         title={t('email.title')}
         description={t('email.description')}
       />
 
-      {/* Form */}
       <form onSubmit={submitEmail} className="flex flex-col gap-5">
         <Input
           label={t('email.emailLabel')}
@@ -90,7 +92,11 @@ export default function ForgotPasswordForm({ goToStep, setEmail }: ForgotPasswor
           {...register('email')}
         />
 
-        {serverError && <div className="text-ds-danger text-sm">{serverError}</div>}
+        {serverError && (
+          <div className="text-ds-danger text-sm" role="alert">
+            {serverError}
+          </div>
+        )}
 
         <Button
           type="submit"
@@ -101,7 +107,6 @@ export default function ForgotPasswordForm({ goToStep, setEmail }: ForgotPasswor
         </Button>
       </form>
 
-      {/* Footer */}
       <AuthFooter text={t('email.footerText')} linkText={t('email.footerLink')} href="/register" />
     </>
   );

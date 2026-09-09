@@ -2,10 +2,10 @@
 
 import { useState } from 'react';
 
-import PasswordResetSent from './password-reset-sent';
 import ForgotPasswordForm from './forgot-password-form';
-import type { Step } from '../../lib/constants/forgot-password.constant';
+import PasswordResetSent from './password-reset-sent';
 import { STEP } from '../../lib/constants/forgot-password.constant';
+import type { Step } from '../../lib/constants/forgot-password.constant';
 
 export default function ForgotPasswordFlow() {
   const [step, setStep] = useState<Step>(STEP.EMAIL);

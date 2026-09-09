@@ -15,18 +15,17 @@ export default function AuthFooter({ text, linkText, href }: Props) {
       <div className="mt-5 flex gap-1 text-sm font-medium">
         <span>{text}</span>
 
-        {href && linkText ? (
-          <Link
-            href={href}
-            className="text-ds-primary hover:text-ds-primary-saturated text-sm font-bold"
-          >
-            {linkText}
-          </Link>
-        ) : (
-          linkText && (
+        {linkText &&
+          (href ? (
+            <Link
+              href={href}
+              className="text-ds-primary hover:text-ds-primary-saturated text-sm font-bold"
+            >
+              {linkText}
+            </Link>
+          ) : (
             <span className="text-ds-primary cursor-not-allowed text-sm font-bold">{linkText}</span>
-          )
-        )}
+          ))}
       </div>
     </div>
   );

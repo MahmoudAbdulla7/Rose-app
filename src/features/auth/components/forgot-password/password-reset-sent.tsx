@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 
 import { Button } from '@/shared/ui/button';
 import { Separator } from '@/shared/ui/separator';
-import type { Step } from '../../lib/constants/forgot-password.constant';
 import { STEP } from '../../lib/constants/forgot-password.constant';
+import type { Step } from '../../lib/constants/forgot-password.constant';
 import AuthFooter from '../auth-footer';
 
 type PasswordResetSentProps = {
@@ -44,7 +44,6 @@ export default function PasswordResetSent({ goToStep, email }: PasswordResetSent
       <p className="text-ds-text-plain mb-4">{t('sent.instruction')}</p>
       <p className="text-ds-text-default">{t('sent.spamHint')}</p>
 
-      {/* Footer */}
       <AuthFooter text={t('helpFooter.text')} linkText={t('helpFooter.link')} href={null} />
     </>
   );

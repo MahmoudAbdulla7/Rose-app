@@ -28,7 +28,10 @@ export async function forgotPasswordAction(body: ForgotPasswordBody): Promise<IA
   const data = (await response.json()) as IAPIResponse<null>;
 
   if (!response.ok) {
-    throw new Error(data.message || 'Request failed');
+    const error = new Error(data.message || 'Request failed');
+    error.cause = response.status;
+
+    throw error;
   }
 
   return data;
