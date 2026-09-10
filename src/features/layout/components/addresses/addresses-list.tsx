@@ -79,6 +79,7 @@ export default function AddressesList({
           </div>
         ))}
       </div>
+
       {addressToDelete && (
         <DeleteAddressDialog address={addressToDelete} onClose={() => setAddressToDelete(null)} />
       )}

@@ -1,19 +1,12 @@
-import { getServerSession } from 'next-auth';
 import { Suspense } from 'react';
 
-import { authOptions } from '@/auth';
 import ProfileSkeleton from '@/features/layout/skeletons/profile.skeleton';
+import ProfilePageContent from '@/features/profile/components/profile-page-content';
 
 export default function ProfilePage() {
   return (
     <Suspense fallback={<ProfileSkeleton />}>
-      <ProfileContent />
+      <ProfilePageContent />
     </Suspense>
   );
-}
-
-async function ProfileContent() {
-  const session = await getServerSession(authOptions);
-
-  return <div>ProfilePage — {session?.user?.username}</div>;
 }

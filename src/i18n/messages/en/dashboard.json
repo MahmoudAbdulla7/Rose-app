@@ -11,7 +11,83 @@
   },
   "userMenu": {
     "label": "User menu",
-    "account": "Account",
+    "profile": "Profile",
     "logout": "Log out"
+  },
+  "overview": {
+    "stats": {
+      "totalProducts": "Total products",
+      "totalOrders": "Total orders",
+      "totalCategories": "Total categories",
+      "totalRevenue": "Total revenue"
+    },
+    "lists": {
+      "allCategories": "All Categories",
+      "topSellingProducts": "Top Selling Products",
+      "lowStockProducts": "Low Stock Products",
+      "productsLabel": "{count, plural, =0 {Products} =1 {Product} other {Products}}",
+      "salesLabel": "{count, plural, =0 {Sales} =1 {Sale} other {Sales}}",
+      "noCategories": "No categories available",
+      "noTopSellingProducts": "No top-selling products available",
+      "noLowStockProducts": "No low-stock products available"
+    }
+  },
+  "profile": {
+    "title": "Account Settings",
+    "upload": {
+      "title": "Upload Photo",
+      "description": "You can upload a .jpg, .png, .gif, or .webp photo with a maximum size of 5 MB."
+    },
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "gender": "Gender",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "confirmPassword": "Confirm new password"
+    },
+    "gender": {
+      "male": "Male",
+      "female": "Female",
+      "unspecified": "Not specified"
+    },
+    "actions": {
+      "uploadPhoto": "Upload profile photo",
+      "deleteAccount": "Delete My Account",
+      "changePassword": "Change Password",
+      "save": "Save Changes",
+      "updatePassword": "Update Password"
+    },
+    "deleteDialog": {
+      "title": "Are you sure you want to delete your account?",
+      "description": "This action is permanent and cannot be undone.",
+      "cancel": "Nope, not doing it",
+      "confirm": "Yes, delete"
+    },
+    "passwordDialog": {
+      "title": "Change Password",
+      "description": "Enter your current password and choose a secure new password."
+    },
+    "validation": {
+      "firstNameRequired": "First name is required.",
+      "lastNameRequired": "Last name is required.",
+      "phoneRequired": "Phone number is required.",
+      "photoInvalid": "Choose a JPG, PNG, GIF, or WebP image no larger than 5 MB.",
+      "currentPasswordRequired": "Current password is required.",
+      "confirmPasswordRequired": "Please confirm your new password.",
+      "passwordMin": "Password must be at least 8 characters.",
+      "passwordLowercase": "Password must include a lowercase letter.",
+      "passwordUppercase": "Password must include an uppercase letter.",
+      "passwordDigit": "Password must include a number.",
+      "passwordSpecial": "Password must include a special character.",
+      "passwordsMismatch": "Passwords do not match."
+    },
+    "messages": {
+      "updated": "Profile updated successfully.",
+      "passwordChanged": "Password changed successfully.",
+      "error": "Something went wrong. Please try again."
+    }
   }
 }

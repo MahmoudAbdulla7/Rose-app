@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import type { Locale } from 'next-intl';
 import { getTranslations } from 'next-intl/server';
 
-type Props = LayoutProps<'/[locale]'>;
+type Props = PageProps<'/[locale]/checkout'>;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params;

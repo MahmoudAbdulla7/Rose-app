@@ -1,7 +1,6 @@
 'use client';
 
 import { Link } from '@/i18n/navigation';
-import { useAuth } from '@/shared/hooks';
 import { cn } from '@/shared/lib/utils';
 import { User } from 'lucide-react';
 import { useTranslations } from 'next-intl';

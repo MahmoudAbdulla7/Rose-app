@@ -26,6 +26,8 @@ export default function DashboardHeader() {
   const section = DASHBOARD_NAV_LINKS.find(
     (link) => link.href !== '/dashboard' && pathname.startsWith(link.href),
   );
+  const sectionLabel =
+    pathname === '/profile' ? t('userMenu.profile') : section && t(`nav.${section.label}`);
 
   return (
     <header className="border-ds-border-muted bg-ds-plain sticky top-0 z-30 flex h-17.5 shrink-0 items-center justify-between gap-4 border-b px-4">
@@ -44,18 +46,18 @@ export default function DashboardHeader() {
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              {section ? (
+              {sectionLabel ? (
                 <BreadcrumbLink render={<Link href="/dashboard" />}>{t('title')}</BreadcrumbLink>
               ) : (
                 <BreadcrumbPage>{t('title')}</BreadcrumbPage>
               )}
             </BreadcrumbItem>
 
-            {section && (
+            {sectionLabel && (
               <>
                 <BreadcrumbSeparator />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>{t(`nav.${section.label}`)}</BreadcrumbPage>
+                  <BreadcrumbPage>{sectionLabel}</BreadcrumbPage>
                 </BreadcrumbItem>
               </>
             )}

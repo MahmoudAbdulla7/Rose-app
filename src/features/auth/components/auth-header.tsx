@@ -1,5 +1,5 @@
-import { Separator } from '@/shared/ui/separator';
 import { cn } from '@/shared/lib/utils';
+import { Separator } from '@/shared/ui/separator';
 
 type AuthHeaderProps = {
   title: string;

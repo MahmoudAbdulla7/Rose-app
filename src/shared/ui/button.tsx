@@ -31,7 +31,7 @@ const buttonVariants = cva(
           disabled:bg-ds-soft disabled:border-transparent disabled:text-ds-text-muted
         `,
         ghost: `
-          bg-ds-plain text-ds-text-plain dark:bg-transparent 
+          bg-transparent text-ds-text-plain 
           hover:bg-ds-soft cursor-pointer dark:hover:bg-ds-soft 
           disabled:bg-ds-soft disabled:text-ds-text-muted dark:disabled:bg-ds-soft
         `,

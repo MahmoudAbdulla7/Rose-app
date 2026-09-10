@@ -1,15 +1,15 @@
 'use client';
 
+import { toast } from 'sonner';
 import { useForm } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { useState } from 'react';
-import { useSearchParams } from 'next/navigation';
 import { useRouter } from '@/i18n/navigation';
+import { useSearchParams } from 'next/navigation';
+import { useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { zodResolver } from '@hookform/resolvers/zod';
 import type z from 'zod';
 
-import { toast } from 'sonner';
 import { Button } from '@/shared/ui/button';
 import { PasswordInput } from '@/shared/ui/password-input';
 import { createResetPasswordSchema } from '../../lib/schemas/forgot-password.schema';
@@ -25,7 +25,6 @@ export default function ResetPassword() {
 
   // Schema
   const resetPasswordSchema = createResetPasswordSchema(tValidation);
-
   type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 
   // Navigation
@@ -68,7 +67,7 @@ export default function ResetPassword() {
   // Functions
   const submitPassword = handleSubmit((values) => {
     if (!token) {
-      setServerError('Invalid or missing reset token.');
+      setServerError(t('reset.invalidToken'));
       return;
     }
     setServerError(null);
@@ -82,14 +81,12 @@ export default function ResetPassword() {
 
   return (
     <>
-      {/* Header */}
       <AuthHeader
         variant="secondary"
         title={t('reset.title')}
         description={t('reset.description')}
       />
 
-      {/* Form */}
       <form onSubmit={submitPassword} className="flex flex-col gap-5">
         <PasswordInput
           label={t('reset.newPasswordLabel')}
@@ -105,7 +102,11 @@ export default function ResetPassword() {
           {...register('confirmPassword')}
         />
 
-        {serverError && <div className="text-ds-danger text-sm">{serverError}</div>}
+        {serverError && (
+          <div className="text-ds-danger text-sm" role="alert">
+            {serverError}
+          </div>
+        )}
 
         <Button
           type="submit"
@@ -116,7 +117,6 @@ export default function ResetPassword() {
         </Button>
       </form>
 
-      {/* Footer */}
       <AuthFooter text={t('helpFooter.text')} linkText={t('helpFooter.link')} href={null} />
     </>
   );

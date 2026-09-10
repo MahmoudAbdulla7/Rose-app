@@ -1,4 +1,5 @@
 import * as z from 'zod';
+
 import { createRegisterSchema } from './register.schema';
 
 type IValidationTranslator = (key: string) => string;

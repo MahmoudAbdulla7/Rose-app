@@ -10,7 +10,7 @@ export default function Stepper({ step }: AddressFormStepperProps) {
 
       {/* Step 1 */}
       <div
-        className={`flex size-6 shrink-0 items-center justify-center rounded-full text-sm font-semibold text-white ${
+        className={`text-ds-text-inverse flex size-6 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
           step >= 1 ? 'bg-ds-primary' : 'bg-ds-border-muted'
         }`}
       >
@@ -18,19 +18,19 @@ export default function Stepper({ step }: AddressFormStepperProps) {
       </div>
 
       {/* Between Steps */}
-      <div className={`h-0.5 flex-1 ${step >= 2 ? 'bg-ds-primary' : 'bg-ds-border-muted'}`} />
+      <div className={`h-1.5 flex-1 ${step >= 2 ? 'bg-ds-primary' : 'bg-ds-border-muted'}`} />
 
       {/* Step 2 */}
       <div
-        className={`flex size-6 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
-          step >= 2 ? 'bg-ds-primary text-white' : 'bg-ds-border-muted text-ds-text-soft'
+        className={`text-ds-text-inverse flex size-6 shrink-0 items-center justify-center rounded-full text-sm font-semibold ${
+          step >= 2 ? 'bg-ds-primary' : 'bg-ds-border-muted text-ds-text-soft'
         }`}
       >
         2
       </div>
 
       {/* After Step 2 */}
-      <div className="bg-ds-border-muted h-0.5 flex-1" />
+      <div className="bg-ds-border-muted h-1.5 flex-1" />
     </div>
   );
 }

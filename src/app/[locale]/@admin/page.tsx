@@ -1,8 +1,12 @@
-import { useTranslations } from 'next-intl';
+import { Suspense } from 'react';
 
+import DashboardOverview from '@/features/dashboard/components/overview/dashboard-overview';
+import DashboardOverviewSkeleton from '@/features/dashboard/skeletons/dashboard-overview.skeleton';
 
 export default function DashboardOverviewPage() {
-  const t = useTranslations('dashboard.nav');
-
-  return <h1 className="text-ds-text-plain text-2xl font-semibold">{t('overview')}</h1>;
+  return (
+    <Suspense fallback={<DashboardOverviewSkeleton />}>
+      <DashboardOverview />
+    </Suspense>
+  );
 }

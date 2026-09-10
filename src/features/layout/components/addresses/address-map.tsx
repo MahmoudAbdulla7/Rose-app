@@ -1,12 +1,15 @@
 'use client';
 
+import L from 'leaflet';
 import type { LatLngLiteral } from 'leaflet';
 import { MapContainer, Marker, TileLayer, useMap, useMapEvents } from 'react-leaflet';
 import { MapPinHouse } from 'lucide-react';
+import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 
 import { Button } from '@/shared/ui/button';
+import pinIcon from '../../../../../public/assets/images/map-pin-icon.svg';
 
 interface AddressMapProps {
   location: LatLngLiteral | null;
@@ -41,7 +44,6 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
 
   // State
   const [isLocating, setIsLocating] = useState(false);
-  const [locationError, setLocationError] = useState('');
 
   // Variables
   const defaultCenter = location ?? {
@@ -49,15 +51,23 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
     lng: 31.2357, // Cairo
   };
 
+  const icon =
+    typeof window !== 'undefined'
+      ? L.icon({
+          iconUrl: pinIcon.src,
+          iconSize: [32, 32],
+          iconAnchor: [16, 32],
+        })
+      : undefined;
+
   // Functions
   const handleFindMyLocation = () => {
     if (!navigator.geolocation) {
-      setLocationError('Geolocation is not supported.');
+      toast.error(t('form.notSupported'));
       return;
     }
 
     setIsLocating(true);
-    setLocationError('');
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => {
@@ -69,7 +79,7 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
         setIsLocating(false);
       },
       () => {
-        setLocationError('locationDenied');
+        toast.error(t('form.locationDenied'));
         setIsLocating(false);
       },
       {
@@ -80,7 +90,7 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
 
   return (
     <>
-      <div className="relative h-72 w-full overflow-hidden rounded-lg">
+      <div className="relative h-71 w-full overflow-hidden rounded-lg">
         <MapContainer center={defaultCenter} zoom={13} className="h-full w-full rounded-xl">
           <TileLayer
             attribution="&copy; OpenStreetMap contributors"
@@ -100,13 +110,15 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
                   onLocationChange(event.target.getLatLng());
                 },
               }}
+              icon={icon}
             />
           )}
         </MapContainer>
+
         <Button
           type="button"
           variant="outline"
-          className="absolute inset-e-3 top-3 z-1000 flex gap-2.5"
+          className="absolute top-3 z-1000 flex gap-2.5 ltr:inset-e-3 rtl:inset-s-3"
           onClick={handleFindMyLocation}
           loading={isLocating}
         >
@@ -114,7 +126,6 @@ export default function AddressMap({ location, onLocationChange }: AddressMapPro
           {t('form.findMyLocation')}
         </Button>
       </div>
-      {locationError && <p className="text-ds-danger mt-2 text-sm">{locationError}</p>}
     </>
   );
 }

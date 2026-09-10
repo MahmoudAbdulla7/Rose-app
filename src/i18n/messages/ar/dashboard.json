@@ -11,7 +11,83 @@
   },
   "userMenu": {
     "label": "قائمة المستخدم",
-    "account": "الحساب",
+    "profile": "الملف الشخصي",
     "logout": "تسجيل الخروج"
+  },
+  "overview": {
+    "stats": {
+      "totalProducts": "إجمالي المنتجات",
+      "totalOrders": "إجمالي الطلبات",
+      "totalCategories": "إجمالي الفئات",
+      "totalRevenue": "إجمالي الإيرادات"
+    },
+    "lists": {
+      "allCategories": "جميع الفئات",
+      "topSellingProducts": "المنتجات الأكثر مبيعًا",
+      "lowStockProducts": "المنتجات منخفضة المخزون",
+      "productsLabel": "{count, plural, =0 {منتجات} =1 {منتج} =2 {منتجان} few {منتجات} many {منتجًا} other {منتج}}",
+      "salesLabel": "{count, plural, =0 {مبيعات} =1 {عملية بيع} =2 {عمليتا بيع} few {عمليات بيع} many {عملية بيع} other {عملية بيع}}",
+      "noCategories": "لا توجد تصنيفات",
+      "noTopSellingProducts": "لا توجد منتجات الأكثر مبيعًا",
+      "noLowStockProducts": "لا توجد منتجات منخفضة المخزون"
+    }
+  },
+  "profile": {
+    "title": "إعدادات الحساب",
+    "upload": {
+      "title": "رفع صورة",
+      "description": "يمكنك رفع صورة بصيغة JPG أو PNG أو GIF أو WebP بحجم أقصى 5 ميجابايت."
+    },
+    "fields": {
+      "firstName": "الاسم الأول",
+      "lastName": "اسم العائلة",
+      "email": "البريد الإلكتروني",
+      "phone": "رقم الهاتف",
+      "gender": "النوع",
+      "currentPassword": "كلمة المرور الحالية",
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور الجديدة"
+    },
+    "gender": {
+      "male": "ذكر",
+      "female": "أنثى",
+      "unspecified": "غير محدد"
+    },
+    "actions": {
+      "uploadPhoto": "رفع صورة الملف الشخصي",
+      "deleteAccount": "حذف حسابي",
+      "changePassword": "تغيير كلمة المرور",
+      "save": "حفظ التغييرات",
+      "updatePassword": "تحديث كلمة المرور"
+    },
+    "deleteDialog": {
+      "title": "هل أنت متأكد من رغبتك في حذف حسابك؟",
+      "description": "هذا الإجراء دائم ولا يمكن التراجع عنه.",
+      "cancel": "لا، إلغاء",
+      "confirm": "نعم، احذف"
+    },
+    "passwordDialog": {
+      "title": "تغيير كلمة المرور",
+      "description": "أدخل كلمة المرور الحالية واختر كلمة مرور جديدة وآمنة."
+    },
+    "validation": {
+      "firstNameRequired": "الاسم الأول مطلوب.",
+      "lastNameRequired": "اسم العائلة مطلوب.",
+      "phoneRequired": "رقم الهاتف مطلوب.",
+      "photoInvalid": "اختر صورة JPG أو PNG أو GIF أو WebP لا يزيد حجمها عن 5 ميجابايت.",
+      "currentPasswordRequired": "كلمة المرور الحالية مطلوبة.",
+      "confirmPasswordRequired": "يرجى تأكيد كلمة المرور الجديدة.",
+      "passwordMin": "يجب ألا تقل كلمة المرور عن 8 أحرف.",
+      "passwordLowercase": "يجب أن تحتوي كلمة المرور على حرف إنجليزي صغير.",
+      "passwordUppercase": "يجب أن تحتوي كلمة المرور على حرف إنجليزي كبير.",
+      "passwordDigit": "يجب أن تحتوي كلمة المرور على رقم.",
+      "passwordSpecial": "يجب أن تحتوي كلمة المرور على رمز خاص.",
+      "passwordsMismatch": "كلمتا المرور غير متطابقتين."
+    },
+    "messages": {
+      "updated": "تم تحديث الملف الشخصي بنجاح.",
+      "passwordChanged": "تم تغيير كلمة المرور بنجاح.",
+      "error": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+    }
   }
 }

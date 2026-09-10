@@ -26,3 +26,7 @@ export interface GetNotificationsParams {
   page?: number;
   limit?: number;
 }
+
+export interface UnreadCountPayload {
+  unreadCount: number;
+}

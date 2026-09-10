@@ -39,10 +39,7 @@ export function AddressesModal({ open, onOpenChange }: AddressBookModalProps) {
     >
       <DialogContent
         showCloseButton={false}
-        className={cn(
-          'max-h-147.75 p-6 md:min-w-3xl',
-          view === 'list' ? 'overflow-visible' : 'overflow-y-auto',
-        )}
+        className="max-h-147.75 overflow-y-auto p-6 md:min-w-3xl"
       >
         <DialogHeader>
           <div className="flex justify-between">
@@ -72,8 +69,8 @@ export function AddressesModal({ open, onOpenChange }: AddressBookModalProps) {
         </DialogHeader>
 
         {/* Content */}
-        <div className="overflow-y-auto pe-6">
-          {view === 'list' ? (
+        {view === 'list' ? (
+          <div className="pe-6">
             <AddressesModalContent
               addresses={addresses}
               isLoading={isLoading}
@@ -85,10 +82,10 @@ export function AddressesModal({ open, onOpenChange }: AddressBookModalProps) {
                 setView('edit');
               }}
             />
-          ) : (
-            <AddressForm address={editingAddress} onBack={() => setView('list')} />
-          )}
-        </div>
+          </div>
+        ) : (
+          <AddressForm address={editingAddress} onBack={() => setView('list')} />
+        )}
       </DialogContent>
     </Dialog>
   );

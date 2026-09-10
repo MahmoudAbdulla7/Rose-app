@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import { Bell, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 import HeaderAuth from './header-auth';
+import NotificationsDropdown from './notifications/notifications-dropdown';
 import {
   HEADER_NAV_LINKS,
   isHeaderNavLinkActive,
@@ -93,18 +94,7 @@ export default function HeaderMobileMenu({ isAuthenticated }: { isAuthenticated:
 
           <Separator className="bg-ds-border-soft" />
 
-          <DialogClose
-            nativeButton={false}
-            render={
-              <Link
-                href="/notifications"
-                className="text-ds-text-default inline-flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium"
-              />
-            }
-          >
-            <Bell className="size-4 shrink-0" />
-            {t('notifications.label')}
-          </DialogClose>
+          {isAuthenticated && <NotificationsDropdown showLabel />}
 
           <div className="flex flex-wrap items-center justify-between gap-3 px-1">
             <LanguageSwitcherComponent className="text-sm" />

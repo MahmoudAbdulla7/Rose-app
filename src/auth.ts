@@ -66,8 +66,8 @@ export const authOptions: NextAuthOptions = {
       }
 
       if (session && trigger === 'update') {
-        token.accessToken = session.accessToken;
-        token.user = session.user;
+        token.accessToken = session.accessToken ?? token.accessToken;
+        token.user = session.user ?? token.user;
       }
 
       return token;

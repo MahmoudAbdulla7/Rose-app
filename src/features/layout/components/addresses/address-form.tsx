@@ -83,7 +83,7 @@ export default function AddressForm({ address, onBack }: AddressFormProps) {
 
   const submitAddress = handleSubmit((values) => {
     if (!location) {
-      toast.error(t('locationRequired'));
+      toast.error(t('validation.addressRequired'));
       return;
     }
 
@@ -131,11 +131,13 @@ export default function AddressForm({ address, onBack }: AddressFormProps) {
 
       {/* Subheader*/}
       <div className="flex gap-4">
+        {/* Back */}
         <Button size="icon-rounded" onClick={handleBack}>
           <ArrowLeft className="rtl:rotate-180" />
         </Button>
 
-        <p className="text-ds-primary mt-1 text-2xl font-medium">
+        {/* Form title */}
+        <p className="text-ds-primary text-2xl font-medium">
           {step === 1 ? t('form.step1Title') : t('form.step2Title')}
         </p>
       </div>
@@ -143,6 +145,7 @@ export default function AddressForm({ address, onBack }: AddressFormProps) {
       <Separator />
 
       {step === 1 ? (
+        // Step 1
         <AddressStepOne
           register={register}
           control={control}
@@ -151,6 +154,7 @@ export default function AddressForm({ address, onBack }: AddressFormProps) {
           goToStepTwo={goToStepTwo}
         />
       ) : (
+        // Step 2
         <div className="flex flex-col gap-6">
           <AddressMap location={location} onLocationChange={setLocation} />
 

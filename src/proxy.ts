@@ -45,5 +45,7 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   // Add 'assets' to prevent redirecting in
-  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|assets).*)'],
+  matcher: [
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|assets|sw.js).*)',
+  ],
 };

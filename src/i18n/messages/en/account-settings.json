@@ -1,0 +1,18 @@
+{
+  "title": "Account Settings",
+  "nav": {
+    "label": "Account settings",
+    "profile": "Profile",
+    "changePassword": "Change Password",
+    "logout": "Logout"
+  },
+  "changePassword": {
+    "metadataDescription": "Update the password for your Rose App account.",
+    "oldPassword": "Old Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "placeholder": "********",
+    "submit": "Change Password",
+    "success": "Your password has been changed."
+  }
+}
